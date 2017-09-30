@@ -76,7 +76,7 @@ public class DictionaryEncoding {
                if (!words.contains(word)) words.add(word);
                System.out.print(words.indexOf(word) + ",");
                wordCount ++;
-               System.out.println("Word" + word + "Number" + words.get(Integer.valueOf(word)) );
+               System.out.println("Word" + word + "Number" + words.get(Integer.parseInt(word)));
            }
             System.out.println();
             System.out.println("Length of output screen " + wordCount + " numbers.");
