@@ -7,6 +7,7 @@ public class DictionaryEncoding {
 
 
         private static ArrayList<String> words = new ArrayList<>();
+        private static ArrayList<Integer> frequency = new ArrayList();
 
         private static String input = new StringBuilder()
                 .append("Is this the real life?\n")
@@ -71,28 +72,39 @@ public class DictionaryEncoding {
         public static void main(String[] args)
         {
             System.out.println("Code vs Words");
-            int wordCount = 0;
-           for (String word : input.split("[ /n]")){
-               if (!words.contains(word)) words.add(word);
-               System.out.print(words.indexOf(word) + ",");
-               wordCount ++;
-               System.out.println("Word" + word + "Number" + words.get(Integer.parseInt(word)));
+
+
+            int i;
+            int currentFreq;
+
+           for (String word : input.split("[ /n]")) {
+               if (!words.contains(word)) {
+                   words.add(word);
+                   frequency.add(1);
+               } else if (words.contains(word)){
+                   i = (words.indexOf(word));
+                   currentFreq = frequency.get(i);
+                   frequency.set(i, currentFreq+1);
+               }
+
+
            }
-            System.out.println();
-            System.out.println("Length of output screen " + wordCount + " numbers.");
-
-
-
-
-
-
-
-
+            System.out.println("Word, Encoded Index, Frequency");
+            String currentWord;
+            int wordInt = 0;
+            while (wordInt != words.lastIndexOf(wordInt)){
+                currentWord = words.get(wordInt);
+                System.out.println(currentWord + " "+ words.indexOf(currentWord) + " Frequency " + frequency.get(wordInt));
+                wordInt++;
+            }
             System.out.println();
             System.out.println("Length of input string " + input.length() + " characters.");
 
+
         }
+
 }
 
 
-
+// The most optimal storage for each output would be in integers instead of characters because characters must always be stored at least a byte (ASCII)
+// whereas an int will have many more combinations and can be shrunk under a byte but since there are 192 words (elements) it must be stored as a byte too.
